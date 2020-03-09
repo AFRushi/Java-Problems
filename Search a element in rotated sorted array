@@ -7,7 +7,7 @@ assume that
 solution :
 
 Rotation used is right rotation with fixed rotation value,Time complexity is O(n) and space complexity O(n).
-Search the target value in array fuctio has time complexity of O(logn).
+Search the target value in array fuction has time complexity of O(logn).
 
 */
 
@@ -16,7 +16,7 @@ import java.util.*;
 import java.io.*;
 public class Main {
     public static void main(String[] args) throws Exception {
-        // Your code here!
+       
        // Reding the element from the console
        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));  
         String [] str = br.readLine().trim().split(" ");
