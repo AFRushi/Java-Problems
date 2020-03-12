@@ -1,0 +1,65 @@
+/*Given an array where every element occurs three times, except one element which occurs only once.
+Find the element that occurs once.Expected time complexity is O(n) and O(1) extra space. */
+
+
+import java.util.*;
+import java.io.*;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        // Your code here!
+        
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String [] str = br.readLine().trim().split(" ");
+        int [] arr = new int[str.length];
+        for(int i =0 ;i< str.length; i++){
+            
+            arr[i] = Integer.parseInt(str[i]);
+        }
+        
+        System.out.println(Arrays.toString(arr));
+        int ones=0,twos=0;
+        int common_bit_mask;
+        
+        for(int i =0; i< arr.length; i++){
+         
+            //    System.out.println("Value of Ones At Start of new Interation "+ones);
+            //   System.out.println("Value of Twos At Start of new Interation "+twos);
+
+        /*"one & arr[i]" gives the bits that are there in 
+            both 'ones' and new element from arr[]. We 
+            add these bits to 'twos' using bitwise OR*/
+            twos = twos | (ones & arr[i]);
+            
+                
+             //   System.out.println("Value of Twos "+twos);
+             //   System.out.println("Value of Ones "+ones);
+
+
+            ones = ones ^ arr[i];
+                
+             //   System.out.println("Value of Ones after  xor with new element and previos value of Ones "+ones);
+          
+          /* The common bits are those bits which appear third time 
+            So these bits should not be there in both 'ones' and 'twos'. 
+            common_bit_mask contains all these bits as 0, so that the bits can  
+            be removed from 'ones' and 'twos'*/
+            
+            common_bit_mask = ~(ones & twos);
+       
+                // System.out.println("Value of the common_bit_mask "+common_bit_mask);
+                 
+            ones &= common_bit_mask;
+            twos &= common_bit_mask;
+            
+               // System.out.println("Value of Ones At End of the Interation "+ones);
+               // System.out.println("Value of Twos At End of the Interation "+twos);
+
+        }
+        
+        System.out.println(ones);
+        
+        // int a=60,b=13;
+        // System.out.println(Integer.toBinaryString( a & b ));
+    }
+}
